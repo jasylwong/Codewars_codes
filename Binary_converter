@@ -1,0 +1,6 @@
+Converting a binary number to the decimal number:
+
+s=0
+for i in number:
+  s = s * 2 + i
+return s
