@@ -1,0 +1,61 @@
+# Our answer
+
+def pac_man(N, PM, enemies):
+  x_e, y_e = [], []
+  x_e_l, x_e_u, y_e_l, y_e_u = 0, 0, 0, 0
+  if enemies == []:
+      answer =  N * N - 1
+  else:
+      for i in enemies:
+          x_e.append(i[0] + 1)
+      for j in enemies:
+          y_e.append(j[1] + 1)
+
+      x_e_l = [x for x in x_e if x < PM[0] + 1]
+      if not x_e_l:
+        x_e_l = 0
+      elif len(x_e_l) == 1:
+        x_e_l = x_e_l[0]
+      else:
+        x_e_l = max(x_e_l)
+
+      x_e_u = [x for x in x_e if x > PM[0] + 1]
+      if not x_e_u:
+        x_e_u = N + 1
+      elif len(x_e_u) == 1:
+        x_e_u = x_e_u[0]
+      else:
+        x_e_u = min(x_e_u)          
+
+      y_e_l = [y for y in y_e if y < PM[1] + 1]
+      if not y_e_l:
+        y_e_l = 0
+      elif len(y_e_l) == 1:
+        y_e_l = y_e_l[0]
+      else:
+        y_e_l = max(y_e_l)
+
+      y_e_u = [y for y in y_e if y > PM[1] + 1]
+      if not y_e_u:
+        y_e_u = N + 1
+      elif len(y_e_u) == 1:
+        y_e_u = y_e_u[0] 
+      else:
+        y_e_u = min(y_e_u) 
+
+      x_dist = (x_e_u - x_e_l - 1)
+      y_dist = (y_e_u - y_e_l - 1)
+      answer = x_dist * y_dist - 1     
+  return answer
+  
+  #Other answer
+  
+  def pac_man(size, pacman, enemies):
+    px, py = pacman
+    mx, my, Mx, My = -1, -1, size, size
+    for x, y in enemies:
+        if x < px and x > mx: mx = x
+        if y < py and y > my: my = y
+        if x > px and x < Mx: Mx = x
+        if y > py and y < My: My = y
+    return (Mx - mx - 1) * (My - my - 1) - 1
