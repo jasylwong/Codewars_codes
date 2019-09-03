@@ -1,0 +1,18 @@
+def sqInRect(lng, wdth)
+    arr = []
+    if lng == wdth
+      return nil
+    else
+      while (lng != wdth) do
+        if (lng > wdth)
+          lng = lng - wdth
+          arr << wdth
+        else
+          wdth = wdth - lng
+          arr << lng
+        end
+      end
+      arr << lng
+      return arr
+    end
+end
